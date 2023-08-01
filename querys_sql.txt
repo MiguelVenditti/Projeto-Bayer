@@ -1,0 +1,54 @@
+
+-- truncate
+
+truncate table t_sip_doencas cascade;
+truncate table t_sip_diagnostico cascade;
+truncate table t_sip_endereco cascade;
+truncate table t_sip_medico cascade;
+truncate table t_sip_paciente cascade;
+truncate table t_sip_unidade_saude cascade;
+
+-- select querys
+
+select cd_doenca, nm_doenca from t_sip_doencas;
+select cd_endereco, cd_regiao, cd_uf, cd_municipo, tipo_regiao from t_sip_endereco;
+select cd_medico, nm_medico, crm_medico from t_sip_medico;
+select cd_unidade_saude, tipo_unidade, nm_unidade_saude, num_cep, num_endereco from t_sip_unidade_saude;
+
+-- querys with dependence
+
+select cd_paciente, cd_rg, cd_cartao_sus, cd_endereco, nm_paciente, ds_sexo, dt_nasc from t_sip_paciente;
+
+select cd_diagnostico, cd_unidade_saude, cd_medico, cd_paciente, cd_doenca, dt_diagnostico, desc_resultado, status from t_sip_diagnostico;
+
+
+-- insert 
+
+
+insert into t_sip_doencas(cd_doenca, nm_doenca)
+values 
+('1', 'DENGUE'),
+('2', 'ZIKA'),
+('3', 'MALARIA');
+
+insert into t_sip_endereco(cd_endereco, cd_regiao, cd_uf, cd_municipo, tipo_regiao)
+values
+('1', 'SUDESTE', 'SP', 'OSASCO', 'Mata Atlântica');
+
+insert into t_sip_medico(cd_medico, nm_medico, crm_medico)
+values
+('1', 'ROBERTO CARLOS', '123123SP');
+
+insert into t_sip_unidade_saude(cd_unidade_saude, tipo_unidade, nm_unidade_saude, num_cep, num_endereco)
+values
+('1', 'UBS', 'CARLOS ANTONIO SILVEIRA', '000000000', '215');
+
+insert into t_sip_paciente(cd_paciente, cd_rg, cd_cartao_sus, cd_endereco, nm_paciente, ds_sexo, dt_nasc)
+values
+('1', '012345678', 12345678912345, '1', 'LUCAS NUNES DE ASSIS', 0, '2003-05-12');
+
+insert into t_sip_diagnostico(cd_diagnostico, cd_unidade_saude, cd_medico, cd_paciente, cd_doenca, dt_diagnostico, desc_resultado, status)
+values
+('1', '1', '1', '1', '1', '2022-06-08', 'EM ANALISE', False);
+
+
